@@ -81,8 +81,8 @@
     /* Profile Photo Bar */
     .profile-container {
       position: relative;
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       margin: 0 auto 30px;
       z-index: 1;
     }
@@ -91,37 +91,30 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      filter: brightness(0.9);
+      box-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(106, 90, 205, 0.3);
       animation: float 6s ease-in-out infinite;
       transition: all 0.4s ease;
     }
     .profile-photo:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(255, 255, 255, 0.5);
-    }
-    .profile-container::before {
-      content: '';
-      position: absolute;
-      width: 210px;
-      height: 210px;
-      top: -15px;
-      left: -15px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      z-index: -1;
-      opacity: 0.5;
-      animation: pulse 3s ease-in-out infinite;
+      box-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(0, 212, 255, 0.5);
+      filter: brightness(1);
     }
     .profile-container::after {
       content: '';
       position: absolute;
-      width: 230px;
-      height: 230px;
-      top: -25px;
-      left: -25px;
+      width: 240px;
+      height: 240px;
+      top: -10px;
+      left: -10px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.05);
       z-index: -2;
       opacity: 0.3;
       animation: rotate 15s linear infinite;
@@ -130,10 +123,6 @@
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.05); opacity: 0.7; }
     }
     @keyframes rotate {
       from { transform: rotate(0deg); }
@@ -302,12 +291,6 @@
       transform: translateY(0);
     }
 
-    /* Resume Download Button */
-    .resume-download {
-      text-align: center;
-      margin-top: 30px;
-    }
-    
     /* Skills Progress Bars */
     .skill-item {
       margin-bottom: 15px;
@@ -328,6 +311,24 @@
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       border-radius: 10px;
       transition: width 1s ease-in-out;
+    }
+    
+    /* Resume Download Button */
+    .resume-download {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    /* Certificate Cards */
+    .certificate-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+    .certificate-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
     }
   </style>
 </head>
@@ -361,7 +362,7 @@
     <div>
       <!-- Profile Photo Bar -->
       <div class="profile-container">
-        <img src="https://res.cloudinary.com/dmrjjckom/image/upload/v1756492804/pankaj_v12vmg.jpg" alt="Pankaj Bhandari" class="profile-photo" id="profile-img">
+        <img src="https://res.cloudinary.com/dmrjjckom/image/upload/v1756492804/pankaj_v12vmg.jpg" alt="Pankaj Bhandari" class="profile-photo">
       </div>
       
       <h1 class="hero-title">Pankaj Bhandari</h1>
@@ -377,6 +378,7 @@
       <h2 class="text-center mb-4">About Me</h2>
       <div class="glass-card">
         <p>Hi, I'm Pankaj Bhandari, a Computer Science and Engineering student passionate about building interactive projects, learning new technologies, and exploring innovative solutions. I believe in step-by-step growth through practice, creativity, and collaboration.</p>
+        <p class="mt-3">When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community. I'm always open to new opportunities and collaborations.</p>
       </div>
     </div>
   </section>
@@ -388,7 +390,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="glass-card">
-            <h4>Technical</h4>
+            <h4>Technical Skills</h4>
             <div class="skill-item">
               <div class="skill-name">
                 <span>HTML, CSS, JavaScript</span>
@@ -416,11 +418,20 @@
                 <div class="skill-progress" style="width: 80%"></div>
               </div>
             </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>React.js</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="glass-card">
-            <h4>Professional</h4>
+            <h4>Professional Skills</h4>
             <div class="skill-item">
               <div class="skill-name">
                 <span>Problem Solving</span>
@@ -446,6 +457,15 @@
               </div>
               <div class="skill-bar">
                 <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Project Management</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
               </div>
             </div>
           </div>
@@ -516,14 +536,49 @@
         <div class="col-lg-6">
           <div class="glass-card">
             <h4>Education</h4>
-            <p>Bachelor in Computer Science & Engineering – Graphic Era Hill University (2024 - 2028)</p>
-            <p>Higher Secondary – Rainbow Public School (2024)</p>
+            <p><strong>Bachelor in Computer Science & Engineering</strong> – Graphic Era Hill University (2024 - 2028)</p>
+            <p><strong>Higher Secondary</strong> – Rainbow Public School (2024)</p>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="glass-card">
             <h4>Experience</h4>
             <p>Open to internships and collaborative projects. Participated in hackathons and built practice projects focused on web development and problem-solving.</p>
+            <p class="mt-2">Currently working on personal projects to enhance my skills in full-stack development and cloud technologies.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="glass-card">
+            <h4 class="text-center mb-4">Certifications & Achievements</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="certificate-card">
+                  <h5>Web Development Bootcamp</h5>
+                  <p>Completed an intensive web development course covering HTML, CSS, JavaScript, and React</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="certificate-card">
+                  <h5>Hackathon Participant</h5>
+                  <p>Participated in CodeFest 2023 and developed a solution for environmental sustainability</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="certificate-card">
+                  <h5>Python for Everybody</h5>
+                  <p>Completed the Python specialization from University of Michigan on Coursera</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="certificate-card">
+                  <h5>Git & GitHub Mastery</h5>
+                  <p>Certified in version control and collaborative development workflows</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -532,31 +587,6 @@
         <a href="#" class="btn btn-primary mt-4" id="download-resume-btn">
           <i class="fas fa-download me-2"></i> Download Resume
         </a>
-      </div>
-      
-      <div class="row mt-5">
-        <div class="col-12">
-          <div class="glass-card">
-            <h4 class="text-center mb-4">What I Offer</h4>
-            <div class="row">
-              <div class="col-md-4 text-center mb-4">
-                <i class="fas fa-code fa-3x mb-3" style="color: var(--secondary-color);"></i>
-                <h5>Web Development</h5>
-                <p>Creating responsive and interactive websites using modern technologies</p>
-              </div>
-              <div class="col-md-4 text-center mb-4">
-                <i class="fas fa-mobile-alt fa-3x mb-3" style="color: var(--secondary-color);"></i>
-                <h5>Responsive Design</h5>
-                <p>Building websites that work perfectly on all devices and screen sizes</p>
-              </div>
-              <div class="col-md-4 text-center mb-4">
-                <i class="fas fa-lightbulb fa-3x mb-3" style="color: var(--secondary-color);"></i>
-                <h5>Problem Solving</h5>
-                <p>Applying logical thinking and creativity to solve complex problems</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
