@@ -272,7 +272,7 @@
     .gallery-item:hover {
       transform: translateY(-5px);
     }
-    .gallery-item img, .gallery-item video {
+    .gallery-item img, .gallery-item video, .gallery-item iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -282,13 +282,19 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       padding: 15px;
       transform: translateY(100%);
       transition: transform 0.3s;
+      color: var(--light-color);
+      font-size: 0.95rem;
     }
     .gallery-item:hover .content-overlay {
       transform: translateY(0);
+    }
+    /* Make iframe responsive inside grid item */
+    .gallery-item iframe {
+      border: none;
     }
 
     /* Skills Progress Bars */
@@ -798,33 +804,94 @@
       // window.open('path/to/your/resume.pdf', '_blank');
     });
 
-    // Load gallery content on page load
-    window.addEventListener('load', function() {
-      // This is just sample content for the gallery
-      // In a real application, you would load actual content
+    // -----------------------------------------------
+    // NEW GALLERY CODE (supports image, mp4/cloudinary, and YouTube embeds)
+    // -----------------------------------------------
+    window.addEventListener('load', function () {
+
       const gallery = document.getElementById('content-gallery');
-      
-      // Sample images
-      const sampleImages = [
-        'https://source.unsplash.com/300x300/?coding',
-        'https://source.unsplash.com/300x300/?programming',
-        'https://source.unsplash.com/300x300/?technology',
-        'https://source.unsplash.com/300x300/?computer',
-        'https://source.unsplash.com/300x300/?webdesign',
-        'https://source.unsplash.com/300x300/?developer'
+
+      // Replace the sample items here with your actual video/image links & descriptions
+      const galleryContent = [
+        // Video (mp4 or direct hosted video)
+        {
+          type: "video",
+          url: "https://res.cloudinary.com/dmrjjckom/video/upload/v1763273485/WhatsApp_Video_2025-11-16_at_11.38.25_97bc2936_futocd.mp4",
+          desc: "My SWOC analysis video"
+        },
+        {
+          type: "video",
+          url: "https://res.cloudinary.com/dmrjjckom/video/upload/v1763273805/WhatsApp_Video_2025-11-16_at_11.40.04_c306c954_ixmu5c.mp4",
+          desc: "My presentation"
+        },
+        {
+          type: "video",
+          url: "https://res.cloudinary.com/dmrjjckom/video/upload/v1763273941/WhatsApp_Video_2025-11-16_at_11.38.45_156921d2_ckacit.mp4",
+          desc: "My Jaam session video"
+        },
+          {
+          type: "video",
+          url: "https://res.cloudinary.com/dmrjjckom/video/upload/v1763274044/WhatsApp_Video_2025-11-16_at_11.40.03_6f8d6e27_ztcn0u.mp4",
+          desc: "My movie reviw video"
+        },
+
+
+        // YouTube embed (use embed URL: https://www.youtube.com/embed/VIDEO_ID)
+        {
+          type: "youtube",
+          url: "https://www.youtube.com/embed/ZHcN6kU4Jq0",
+          desc: "YouTube tutorial example"
+        },
+
+        // Image example
+        {
+          type: "image",
+          url: "https://source.unsplash.com/300x300/?coding",
+          desc: "Coding inspiration"
+        },
+
+        {
+          type: "image",
+          url: "https://source.unsplash.com/300x300/?technology",
+          desc: "Tech content"
+        }
       ];
-      
-      sampleImages.forEach(img => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.innerHTML = `
-          <img src="${img}" alt="Gallery item">
-          <div class="content-overlay">
-            <p>Sample content</p>
-          </div>
-        `;
+
+      galleryContent.forEach(item => {
+        const galleryItem = document.createElement("div");
+        galleryItem.className = "gallery-item";
+
+        if (item.type === "video") {
+          galleryItem.innerHTML = `
+            <video src="${item.url}" controls preload="metadata"></video>
+            <div class="content-overlay">
+              <p>${item.desc}</p>
+            </div>
+          `;
+        } else if (item.type === "youtube") {
+          galleryItem.innerHTML = `
+            <iframe 
+              src="${item.url}" 
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <div class="content-overlay">
+              <p>${item.desc}</p>
+            </div>
+          `;
+        } else {
+          galleryItem.innerHTML = `
+            <img src="${item.url}" alt="${item.desc}"/>
+            <div class="content-overlay">
+              <p>${item.desc}</p>
+            </div>
+          `;
+        }
+
         gallery.appendChild(galleryItem);
       });
+
     });
 
     // Trigger scroll reveal on page load
